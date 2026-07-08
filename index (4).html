@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="es-CL">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>UFxM2 Construcción by U-Kalk | Costos referenciales de construcción</title>
+<meta content="UFxM2 Construcción by U-Kalk: app chilena para estimar costos referenciales de construcción en UF/m², UF total y CLP, con informes visuales, soporte y rutas públicas para usuarios." name="description"/>
+<meta content="#071626" name="theme-color"/>
+<link href="assets/ukalk-logo-oficial.png" rel="icon"/>
+<style>
+    :root{
+      --bg:#06131f;
+      --bg2:#0a1d31;
+      --panel:#0d2235;
+      --panel2:#132b42;
+      --ink:#f7fbff;
+      --muted:#b7c7d8;
+      --gold:#f3c45d;
+      --gold2:#d99a25;
+      --blue:#18a8ff;
+      --line:rgba(255,255,255,.13);
+      --shadow:0 26px 80px rgba(0,0,0,.45);
+      --radius:28px;
+      --max:1160px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(24,168,255,.18), transparent 28%),
+        radial-gradient(circle at 90% 12%, rgba(243,196,93,.18), transparent 26%),
+        linear-gradient(145deg, #04101b 0%, #08192a 45%, #02070d 100%);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(18px);
+      background:rgba(5,14,24,.82);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      max-width:var(--max);margin:0 auto;padding:14px 20px;
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;min-width:220px}
+    .brand img{width:46px;height:46px;border-radius:14px;box-shadow:0 0 0 1px rgba(243,196,93,.35), 0 8px 28px rgba(0,0,0,.35)}
+    .brand strong{display:block;font-size:1.04rem;letter-spacing:.01em}
+    .brand span{display:block;color:var(--muted);font-size:.83rem;margin-top:1px}
+    .navlinks{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+    .navlinks a{font-size:.93rem;color:#dbe7f3;padding:10px 12px;border-radius:999px;border:1px solid transparent}
+    .navlinks a:hover{border-color:rgba(243,196,93,.45);background:rgba(255,255,255,.05)}
+    .navlinks .pill{color:#08111a;background:linear-gradient(135deg,var(--gold),#ffe5a1);font-weight:800;box-shadow:0 10px 30px rgba(243,196,93,.16)}
+    .hero{position:relative;overflow:hidden}
+    .hero:before{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(90deg, rgba(4,13,22,.95) 0%, rgba(4,13,22,.82) 43%, rgba(4,13,22,.22) 100%),
+        url('assets/ukalk-encabezado-oficial.jpg') center right/cover no-repeat;
+      opacity:.96;
+    }
+    .hero:after{
+      content:"";position:absolute;inset:auto -18% -35% -18%;height:46%;
+      background:radial-gradient(ellipse at center, rgba(24,168,255,.22), transparent 62%);
+      pointer-events:none;
+    }
+    .hero-inner{position:relative;max-width:var(--max);margin:0 auto;padding:92px 20px 86px;display:grid;grid-template-columns:1.02fr .98fr;gap:42px;align-items:center}
+    .kicker{display:inline-flex;align-items:center;gap:10px;color:#ffdf91;font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:.78rem;margin-bottom:18px}
+    .kicker:before{content:"";width:36px;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+    h1{font-size:clamp(2.9rem,6.6vw,5.9rem);line-height:.91;margin:0 0 20px;letter-spacing:-.07em;text-wrap:balance;text-shadow:0 12px 40px rgba(0,0,0,.55)}
+    .lead{font-size:clamp(1.05rem,2vw,1.35rem);color:#e5eef8;max-width:720px;margin:0 0 28px;text-shadow:0 8px 30px rgba(0,0,0,.5)}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;padding:13px 18px;font-weight:900;border:1px solid rgba(255,255,255,.16);box-shadow:0 16px 38px rgba(0,0,0,.25)}
+    .btn.primary{background:linear-gradient(135deg,var(--gold),#ffe29a);color:#07111a;border-color:rgba(255,226,154,.7)}
+    .btn.secondary{background:rgba(10,29,49,.68);color:#f4f8fd}
+    .trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:740px}
+    .trust .chip{border:1px solid rgba(255,255,255,.14);background:rgba(6,19,31,.72);border-radius:18px;padding:14px 16px;color:#dbe7f3}
+    .chip b{display:block;color:var(--gold);font-size:.9rem;margin-bottom:2px}
+    .mock-card{justify-self:end;max-width:380px;width:100%;border-radius:34px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(145deg,rgba(10,29,49,.78),rgba(0,0,0,.42));padding:16px;box-shadow:var(--shadow)}
+    .mock-card img{border-radius:26px;box-shadow:0 30px 75px rgba(0,0,0,.44)}
+    .section{max-width:var(--max);margin:0 auto;padding:78px 20px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}
+    h2{font-size:clamp(2rem,3.8vw,3.2rem);line-height:1.02;margin:0;letter-spacing:-.045em}
+    .sub{color:var(--muted);max-width:690px;margin:10px 0 0;font-size:1.03rem}
+    .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .card{background:linear-gradient(180deg,rgba(19,43,66,.82),rgba(8,25,42,.82));border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.20)}
+    .num{color:#07111a;background:linear-gradient(135deg,var(--gold),#ffe5a6);width:42px;height:42px;display:grid;place-items:center;border-radius:14px;font-weight:950;margin-bottom:18px}
+    .card h3{margin:0 0 8px;font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:.95rem}
+    .showcase{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:stretch}
+    .shot{position:relative;border-radius:32px;overflow:hidden;background:rgba(9,27,45,.72);border:1px solid var(--line);box-shadow:var(--shadow);min-height:420px;display:flex;flex-direction:column}
+    .shot .label{padding:18px 20px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(243,196,93,.14),transparent)}
+    .shot .label b{display:block;color:var(--gold);font-size:.92rem;text-transform:uppercase;letter-spacing:.08em}
+    .shot .label span{color:#dce8f4;font-size:1.08rem;font-weight:900}
+    .shot .frame{padding:16px;display:grid;place-items:center;flex:1}
+    .shot img{border-radius:24px;max-height:720px;width:auto;object-fit:contain}
+    .wide{grid-column:span 2}
+    .wide img{width:100%;height:100%;object-fit:cover;max-height:none}
+    .legal-wrap{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+    .legal-panel{border:1px solid rgba(243,196,93,.26);border-radius:32px;background:rgba(5,17,29,.82);padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+    .legal-list{display:grid;gap:14px;margin-top:22px}
+    .legal-item{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid var(--line)}
+    .legal-item span{display:grid;place-items:center;flex:0 0 38px;height:38px;border-radius:14px;background:rgba(243,196,93,.16);color:var(--gold);font-weight:950}
+    .legal-item b{display:block;margin-bottom:2px}
+    .legal-item small{display:block;color:var(--muted);font-size:.9rem}
+    .links-box{display:grid;gap:10px;margin-top:22px}
+    .links-box a{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.04);color:#eaf3fc;font-weight:800}
+    .links-box a:hover{border-color:rgba(243,196,93,.6);background:rgba(243,196,93,.08)}
+    .note{color:var(--muted);font-size:.96rem;margin-top:18px}
+    footer{max-width:var(--max);margin:0 auto;padding:34px 20px 44px;color:#b8c8d8;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08)}
+    footer b{color:#fff}
+    footer a{color:#ffdf91}
+    @media (max-width:960px){
+      .hero-inner{grid-template-columns:1fr;padding-top:70px}.mock-card{justify-self:start}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.showcase{grid-template-columns:1fr}.wide{grid-column:auto}.legal-grid{grid-template-columns:1fr}.section-head{display:block}.trust{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .nav{align-items:flex-start;flex-direction:column}.navlinks{justify-content:flex-start}.navlinks a{padding:8px 10px;font-size:.88rem}.hero:before{background:linear-gradient(180deg,rgba(4,13,22,.84) 0%,rgba(4,13,22,.94) 58%,rgba(4,13,22,.96) 100%),url('assets/ukalk-encabezado-oficial.jpg') center/cover no-repeat}.hero-inner{padding:54px 18px}.cards{grid-template-columns:1fr}.section{padding:58px 18px}.cta .btn{width:100%}.legal-panel{padding:22px}.shot{min-height:360px}h1{font-size:3.1rem}
+    }
+  </style>
+</head>
+<body>
+<header class="topbar">
+<nav aria-label="Navegación principal" class="nav">
+<a aria-label="Inicio UFxM2 Construcción" class="brand" href="index.html">
+<img alt="Logo oficial UFxM2" src="assets/ukalk-logo-oficial.png"/>
+<span><strong>UFxM2 Construcción</strong><span>by U-Kalk · Constructora Urarco SpA</span></span>
+</a>
+<div class="navlinks">
+<a href="index.html#cumplimiento">Confianza</a>
+<a href="privacidad.html">Privacidad</a>
+<a href="terminos.html">Términos</a>
+<a href="eliminar-cuenta.html">Eliminar cuenta</a>
+<a class="pill" href="soporte.html">Soporte</a>
+</div>
+</nav>
+</header>
+<main>
+<section class="hero" id="inicio">
+<div class="hero-inner">
+<div>
+<div class="kicker">Smart Construction Intelligence</div>
+<h1>Costos de construcción, claros desde el primer minuto.</h1>
+<p class="lead">UFxM2 transforma una idea de proyecto en una primera lectura económica ordenada: valores referenciales en UF/m², UF total y pesos chilenos, con una experiencia simple, visual y pensada para Chile.</p>
+<div aria-label="Acciones principales" class="cta"><a class="btn primary" href="#app-real">Ver la app real</a><a class="btn secondary" href="#planes">Conocer opciones</a><a class="btn secondary" href="soporte.html">Contactar soporte</a></div>
+<div class="trust"><div class="chip"><b>Pensada para Chile</b>Lectura referencial en UF y CLP.</div><div class="chip"><b>Informes para decidir</b>Resultados claros para conversar mejor.</div><div class="chip"><b>Acceso responsable</b>Privacidad, soporte y eliminación disponibles.</div></div>
+</div>
+<aside aria-label="Pantalla real de inicio de UFxM2" class="mock-card">
+<img alt="Pantalla real de inicio UFxM2 con botones Probar Demo, Crear Cuenta Gratis y Acceso Premium" src="assets/ukalk-pantalla-inicio-real.jpeg"/>
+</aside>
+</div>
+</section>
+<section aria-labelledby="que-es" class="section">
+<div class="section-head">
+<div>
+<h2 id="que-es">Una forma moderna de ordenar tus primeras decisiones de obra.</h2>
+<p class="sub">Antes de cotizar, comparar alternativas o conversar con un proyectista, UFxM2 ayuda a construir una mirada económica inicial del proyecto en una interfaz profesional y fácil de usar.</p>
+</div>
+</div>
+<div class="cards"><article class="card"><div class="num">01</div><h3>Escenarios en UF/m²</h3><p>Compara una lectura referencial por metro cuadrado, total en UF y equivalente en pesos chilenos.</p></article><article class="card"><div class="num">02</div><h3>Diseñada para casas y edificios</h3><p>Configura superficie, tipo de proyecto y nivel de terminación desde una experiencia guiada.</p></article><article class="card"><div class="num">03</div><h3>Informes claros y presentables</h3><p>Ordena resultados para respaldar conversaciones, revisar alternativas y tomar mejores decisiones iniciales.</p></article><article class="card"><div class="num">04</div><h3>Lenguaje técnico simple</h3><p>Acerca la información de costos a propietarios, inversionistas y profesionales sin sobrecargar la experiencia.</p></article></div>
+</section>
+<section aria-labelledby="usuarios" class="section">
+<div class="section-head">
+<div>
+<h2 id="usuarios">Diseñada para quienes necesitan decidir con más información.</h2>
+<p class="sub">UFxM2 no reemplaza el estudio profesional del proyecto; entrega una primera base visual y referencial para iniciar conversaciones con más claridad.</p>
+</div>
+</div>
+<div class="cards">
+<article class="card"><div class="num">01</div><h3>Propietarios</h3><p>Para entender el orden de magnitud de una vivienda o ampliación antes de avanzar a etapas de diseño.</p></article>
+<article class="card"><div class="num">02</div><h3>Inversionistas</h3><p>Para mirar alternativas de proyecto con una primera referencia de costo y comparar escenarios rápidamente.</p></article>
+<article class="card"><div class="num">03</div><h3>Profesionales</h3><p>Para apoyar reuniones tempranas, explicar rangos y ordenar antecedentes preliminares frente al cliente.</p></article>
+<article class="card"><div class="num">04</div><h3>Usuarios no técnicos</h3><p>Para acercarse al costo de construcción con una experiencia guiada, visual y fácil de comprender.</p></article>
+</div>
+</section>
+
+<section aria-labelledby="app-real" class="section">
+<div class="section-head">
+<div>
+<h2 id="app-real">Una experiencia visual que se siente como una app profesional.</h2>
+<p class="sub">Pantallas reales, identidad oficial U-Kalk y una navegación pensada para pasar rápido desde una idea de proyecto a una primera lectura referencial de costo.</p>
+</div>
+</div>
+<div class="showcase">
+<article class="shot">
+<div class="label"><b>Inicio</b><span>Demo, cuenta gratis y acceso Premium</span></div>
+<div class="frame"><img alt="Pantalla de inicio real de UFxM2" src="assets/ukalk-pantalla-inicio-real.jpeg"/></div>
+</article>
+<article class="shot">
+<div class="label"><b>Configuración guiada</b><span>Superficie, tipología y selección técnica</span></div>
+<div class="frame"><img alt="Pantalla de configuración UFxM2 en smartphone" src="assets/ukalk-configuracion-smartphone.png"/></div>
+</article>
+<article class="shot">
+<div class="label"><b>Informe Premium</b><span>Presupuesto referencial claro y presentable</span></div>
+<div class="frame"><img alt="Presupuesto detallado Premium UFxM2 en smartphone" src="assets/ukalk-presupuesto-premium-smartphone.png"/></div>
+</article>
+</div>
+</section>
+<section aria-labelledby="planes-titulo" class="section" id="planes">
+<div class="section-head">
+<div>
+<h2 id="planes-titulo">Tres formas de empezar, una misma experiencia ordenada.</h2>
+<p class="sub">UFxM2 permite avanzar por niveles según la necesidad del usuario: conocer la app, guardar análisis básicos o acceder a informes más completos.</p>
+</div>
+</div>
+<div class="cards">
+<article class="card"><div class="num">D</div><h3>Demo</h3><p>Ideal para explorar la experiencia y entender cómo se presenta una estimación referencial.</p></article>
+<article class="card"><div class="num">G</div><h3>Cuenta gratis</h3><p>Permite usar la app con funciones básicas y guardar proyectos simples para revisión posterior.</p></article>
+<article class="card"><div class="num">P</div><h3>Premium</h3><p>Accede a informes más completos, vistas de presupuesto y herramientas de análisis para escenarios de mayor detalle.</p></article>
+<article class="card"><div class="num">✓</div><h3>Soporte público</h3><p>Privacidad, términos, soporte y eliminación de cuenta permanecen disponibles desde rutas oficiales.</p></article>
+</div>
+</section>
+
+<section class="legal-wrap" id="cumplimiento">
+<div class="section legal-grid">
+<div class="legal-panel">
+<div class="kicker">Confianza y transparencia</div>
+<h2>Información pública para usuarios.</h2>
+<p class="sub">UFxM2 mantiene accesibles sus políticas, términos, soporte y solicitud de eliminación de cuenta, con comunicación clara para quienes usan o revisan la aplicación.</p>
+<div class="legal-list">
+<div class="legal-item"><span>01</span><div><b>Privacidad</b><small>Tratamiento de datos, finalidad, contacto y derechos del usuario.</small></div></div>
+<div class="legal-item"><span>02</span><div><b>Términos</b><small>Condiciones de uso y alcance referencial de la aplicación.</small></div></div>
+<div class="legal-item"><span>03</span><div><b>Eliminación</b><small>Solicitud pública para eliminar cuenta y datos asociados.</small></div></div>
+</div>
+</div>
+<div class="legal-panel">
+<h2>Accesos oficiales de la aplicación.</h2>
+<p class="note">Estos enlaces conservan las mismas rutas ya configuradas, para mantener continuidad con la app, el soporte y la revisión pública.</p>
+<div aria-label="Enlaces legales públicos" class="links-box">
+<a href="privacidad.html"><span>Política de privacidad</span><span>→</span></a>
+<a href="terminos.html"><span>Términos y condiciones</span><span>→</span></a>
+<a href="eliminar-cuenta.html"><span>Eliminar cuenta</span><span>→</span></a>
+<a href="soporte.html"><span>Soporte</span><span>→</span></a>
+<a href="data-safety.html"><span>Data Safety</span><span>→</span></a>
+</div>
+<p class="note">UFxM2 entrega estimaciones referenciales para análisis preliminar. Toda decisión técnica, comercial o contractual debe validarse con los profesionales responsables del proyecto.</p>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div>
+<b>UFxM2 Construcción by U-Kalk</b><br/>
+      Sitio oficial de soporte, privacidad, términos y eliminación de cuenta.<br/>
+      Responsable legal: Constructora Urarco SpA · RUT 77.253.047-1<br/>
+      Arlegui 263 Of. 601, Viña del Mar, Chile
+    </div>
+<div>
+<a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="eliminar-cuenta.html">Eliminar cuenta</a> · <a href="soporte.html">Soporte</a> · <a href="data-safety.html">Data Safety</a><br/>
+      Soporte: soporte@urarco.cl<br/>
+      Privacidad: privacidad@urarco.cl<br/>
+      © 2026 Constructora Urarco SpA. Todos los derechos reservados.
+    </div>
+</footer>
+</body>
+</html>
